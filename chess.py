@@ -1,8 +1,4 @@
 
-from re import M
-from shutil import move
-
-
 class Chess:
     
     board = [['bR','bN','bB','bQ','bK','bB','bN','bR'],
@@ -119,6 +115,7 @@ class Chess:
                 return 0
 
     # Next 6 functions will take in the position of a piece and returns list of their legal moves
+
     def queen_move(start, color): # super simple just call bishop and rook for moves
         legal_moves = Chess.rook_move(start,color) + Chess.bishop_move(start, color)
         return legal_moves

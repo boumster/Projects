@@ -103,8 +103,26 @@ class Chess:
                     return -1
             elif (piece == 'wR' and Chess.turn == -1) or (piece == 'bR' and Chess.turn == 1):
                 return 0
+        
+        if piece == 'wQ' or 'bQ':
+            if piece == 'wQ' and Chess.turn == 1:
+                if desired_position in Chess.queen_move(move_list[0], color = 'w'):
+                    return 1
+                else: 
+                    return -1
+            if piece == 'bQ' and Chess.turn == -1:
+                if desired_position in Chess.queen_move(move_list[0], color = 'b'):
+                    return 1
+                else:
+                    return -1
+            elif (piece == 'wQ' and Chess.turn == -1) or (piece == 'bQ' and Chess.turn == 1):
+                return 0
 
     # Next 6 functions will take in the position of a piece and returns list of their legal moves
+    def queen_move(start, color): # super simple just call bishop and rook for moves
+        legal_moves = Chess.rook_move(start,color) + Chess.bishop_move(start, color)
+        return legal_moves
+
     def rook_move(start, color): # Simple for loops of looking side to side and up and down
         x_position = start[1]
         y_position = start[0]
@@ -133,7 +151,6 @@ class Chess:
                 legal_moves.append([j,x_position])
             elif Chess.board[j][x_position] not in Chess.black and color == 'b':
                 legal_moves.append([j,x_position])
-        print(legal_moves)
         return legal_moves
 
     def bishop_move(start, color): ## will look at diagonals using for loops

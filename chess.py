@@ -110,6 +110,32 @@ class Chess:
         y_position = start[0]
         legal_moves = []
 
+        for i in range(x_position+1, 8):# checks right
+            if Chess.board[y_position][i] not in Chess.white and color == 'w':
+                legal_moves.append([y_position, i])
+            elif Chess.board[y_position][i] not in Chess.black and color == 'b':
+                legal_moves.append([y_position, i])
+
+        for i in range(x_position-1, -1, -1):# checks left
+            if Chess.board[y_position][i] not in Chess.white and color == 'w':
+                legal_moves.append([y_position, i])
+            elif Chess.board[y_position][i] not in Chess.black and color == 'b':
+                legal_moves.append([y_position, i])
+
+        for j in range(y_position+1, 8): # checks down
+            if Chess.board[j][x_position] not in Chess.white and color == 'w':
+                legal_moves.append([j,x_position])
+            elif Chess.board[j][x_position] not in Chess.black and color == 'b':
+                legal_moves.append([j,x_position])
+
+        for j in range(y_position-1, -1, -1): # checks up
+            if Chess.board[j][x_position] not in Chess.white and color == 'w':
+                legal_moves.append([j,x_position])
+            elif Chess.board[j][x_position] not in Chess.black and color == 'b':
+                legal_moves.append([j,x_position])
+        print(legal_moves)
+        return legal_moves
+
     def bishop_move(start, color): ## will look at diagonals using for loops
         x_position = start[1]
         y_position = start[0]
